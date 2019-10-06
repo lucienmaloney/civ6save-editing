@@ -1,0 +1,14 @@
+{
+  "name": "civ6save-editing",
+  "version": "0.0.1",
+  "description": "A work in progress collection of tools and information related to editing .civ6save files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucien Maloney",
+  "license": "ISC",
+  "dependencies": {
+    "zlib": "^1.0.5"
+  }
+}
