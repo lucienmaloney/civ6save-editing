@@ -49,4 +49,4 @@ let name = process.argv[4];
 if (name.slice(-9) !== '.Civ6Save') {
   name += '.Civ6Save';
 }
-fs.writeFileSync(process.argv[4], merged);
+fs.writeFileSync(name, merged);
