@@ -67,7 +67,7 @@ Tiles | Bitmap | Fog of war for Team (0=Fog, 1=Clear) | N/A
 4 | Int32 | Number of Tiles on Map | N/A
 4 | Int32 | Width of Map in Tiles | N/A
 4 | Int32 | Number of Tiles on Map | N/A
-Tiles * 2 | Int16 List | ? | N/A
+Tiles * 2 | Int16 List | Number of Units/Tiles/Things Observing Tile (0=Out of Sight, Increment for each thing in sight of tile) | N/A
 4 | Int32 | ? | 0xf7a356cf?
 4 | Int32 | ? | 0x01?
 4 | Int32 | Number of Tiles on Map | N/A
