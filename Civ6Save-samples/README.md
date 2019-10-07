@@ -2,7 +2,7 @@
 
 Name | Difficulty | Civ | MapType | MapSize | Turn | DLC | Speed
 --- | --- | --- | --- | --- | --- | --- | ---
-Deity4.Civ6Save | Deity | Rome | Continents | Small | 204 | Rise and Fall | Standard
+Deity3.Civ6Save | Deity | Rome | Continents | Small |  | Rise and Fall | Standard
 First1.Civ6Save | Prince | Scythia | Continents | Small | 63 | Rise and Fall | Standard
 Duel.Civ6Save | Settler | Macedon | Terra | Duel | 1 | Rise and Fall | Standard
 
