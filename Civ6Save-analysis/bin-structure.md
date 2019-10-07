@@ -35,3 +35,58 @@ Variable | ? | ? | 0xff Repeated?
 4 | Int32 | ? | 0x00?
 191? | Bitmap? | ? | 0x01 Repeated?
 964? | Bitmap? | ? | ?
+4 | Int32 | ? | 0x0301?
+4 | Int32 | ? | 0x00?
+4 | Int32 | ? | N/A
+4 | Int32 | ? | 0x04?
+Variable? | ? | ? | ?
+4 | Int32 | ? | 0x065bfbef?
+
+### Section 2: Player Blocks
+
+Notes:
+* The number of teams equals the number of players plus the number of city-states plus 2 (1 for barbarians and 1 for free-cities)
+* This section repeats one time for each team
+* The player is always the first team listed
+* Though not confirmed, the order of teams if probably civs then city-states then free-cities then barbs (those last two might be switched)
+
+4 | Int32 | ? | 0x00?
+4 | Int32 | ? | 0x01?
+4 | Int32 | Number of Teams | N/A
+4 | Int32 | ? | 0x00?
+4 | Int32 | ? | 0x06?
+Variable? | ? | ? | 0x00?
+1 | ? | ? | 0x01?
+4 | Int32 | Number of Tiles on Map | N/A
+Tiles | Bitmap | Fog of war for Team (0=Fog, 1=Clear) | N/A
+4 | Int32 | ? | 0x05?
+4 | Int32 | ? | 0x11351026?
+4 | Int32 | ? | 0x00?
+4 | Int32 | Number of Tiles on Map | N/A
+4 | Int32 | Width of Map in Tiles | N/A
+4 | Int32 | Number of Tiles on Map | N/A
+Tiles * 2 | Int16 List | ? | N/A
+4 | Int32 | ? | 0xf7a356cf?
+4 | Int32 | ? | 0x01?
+4 | Int32 | Number of Tiles on Map | N/A
+4 | Int32 | Width of Map in Tiles | N/A
+4 | Int32 | Number of Tiles on Map | N/A
+Tiles * 2 | Int16 List | ? | N/A
+4 | Int32 | ? | 0xd180288f?
+4 | Int32 | ? | 0x02?
+4 | Int32 | Number of Tiles on Map | N/A
+4 | Int32 | Width of Map in Tiles | N/A
+4 | Int32 | Number of Tiles on Map | N/A
+Tiles * 2 | Int16 List | ? | N/A
+4 | Int32 | ? | 0xa8a6f95c?
+4 | Int32 | ? | 0x03?
+4 | Int32 | Number of Tiles on Map | N/A
+4 | Int32 | Width of Map in Tiles | N/A
+4 | Int32 | Number of Tiles on Map | N/A
+Tiles * 2 | Int16 List | ? | N/A
+
+Look back to near the beginning of the table and repeat for each team
+
+### Section 3: ?
+
+// TODO: Continue this
