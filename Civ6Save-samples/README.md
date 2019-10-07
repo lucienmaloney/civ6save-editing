@@ -11,9 +11,9 @@ Duel.Civ6Save | Settler | Macedon | Terra | Duel | 1 | Rise and Fall | Standard
 ### Map Size Information
 Size | Width | Height | Tiles | DefaultPlayers | DefaultCityStates
 --- | --- | --- | --- | --- | ---
-Duel | Tiny | Small | Standard | Large | Huge
-44 | 60 | 74 | 84 | 96 | 106
-26 | 38 | 46 | 54 | 60 | 66
-1144 | 2280 | 3404 | 4536 | 5760 | 6996
-2 | 4 | 6 | 8 | 10 | 12
-3 | 6 | 9 | 12 | 15 | 18
+Duel | 44 | 26 | 1144 | 2 | 3
+Tiny | 60 | 38 | 2280 | 4 | 6
+Small | 74 | 46 | 3404 | 6 | 9
+Standard | 84 | 54 | 4536 | 8 | 12
+Large | 96 | 60 | 5760 | 10 | 15
+Huge | 106 | 66 | 6996 | 12 | 18
