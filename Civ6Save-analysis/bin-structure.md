@@ -50,6 +50,8 @@ Notes:
 * The player is always the first team listed
 * Though not confirmed, the order of teams if probably civs then city-states then free-cities then barbs (those last two might be switched)
 
+ByteLength | Type | Purpose | Value
+--- | --- | --- | ---
 4 | Int32 | ? | 0x00?
 4 | Int32 | ? | 0x01?
 4 | Int32 | Number of Teams | N/A
