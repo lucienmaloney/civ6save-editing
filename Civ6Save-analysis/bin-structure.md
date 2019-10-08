@@ -79,13 +79,13 @@ Tiles * 2 | Int16 List | ? | N/A
 4 | Int32 | Number of Tiles on Map | N/A
 4 | Int32 | Width of Map in Tiles | N/A
 4 | Int32 | Number of Tiles on Map | N/A
-Tiles * 2 | Int16 List | ? | N/A
+Tiles * 2 | Int16 List | Resource Map (See resources.md) | N/A
 4 | Int32 | ? | 0xa8a6f95c?
 4 | Int32 | ? | 0x03?
 4 | Int32 | Number of Tiles on Map | N/A
 4 | Int32 | Width of Map in Tiles | N/A
 4 | Int32 | Number of Tiles on Map | N/A
-Tiles * 2 | Int16 List | ? | N/A
+Tiles * 2 | Int16 List | Roads? | N/A
 
 Look back to near the beginning of the table and repeat for each team
 
