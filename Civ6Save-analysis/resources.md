@@ -55,5 +55,5 @@ ID | ID in Hex | Resource
 47 | 0x2f | 
 48 | 0x30 | 
 49 | 0x31 | 
-50 | 0x32 | 
+50 | 0x32 | Olives
 51 | 0x33 | Turtles

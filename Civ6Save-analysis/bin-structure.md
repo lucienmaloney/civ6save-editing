@@ -73,7 +73,7 @@ Tiles * 2 | Int16 List | Number of Units/Tiles/Things Observing Tile (0=Out of S
 4 | Int32 | Number of Tiles on Map | N/A
 4 | Int32 | Width of Map in Tiles | N/A
 4 | Int32 | Number of Tiles on Map | N/A
-Tiles * 2 | Int16 List | ? | N/A
+Tiles * 2 | Int16 List | Terrain Modifiers (Improvements, barb camps, etc; See modifiers.md) | N/A
 4 | Int32 | ? | 0xd180288f?
 4 | Int32 | ? | 0x02?
 4 | Int32 | Number of Tiles on Map | N/A
