@@ -24,7 +24,7 @@ ByteLength | Type | Purpose | Value
 4 | Int32 | ? | 0xf3e6941e?
 4 | Int32 | ? | 0x01?
 4 | Int32 | ? | 0x02?
-Variable | Int32 List | ? | N/A
+Number of Civs + Number of City-States | Int32 List | Number of Turns Played? | N/A
 Variable | ? | ? | 0xff Repeated?
 4 | Int32 | ? | N/A
 4 | Int32 | ? | N/A
@@ -39,8 +39,11 @@ Variable | ? | ? | 0xff Repeated?
 4 | Int32 | ? | 0x00?
 4 | Int32 | ? | N/A
 4 | Int32 | ? | 0x04?
-Variable? | ? | ? | ?
-4 | Int32 | ? | 0x065bfbef?
+82? | ? | ? | ?
+4 | Int32 | Length of Following Int64 List | 0x34?
+416? | Int64 List | ? | N/A
+4 | Int32 | Length of Following Int64 List | 0x34?
+416? | Int64 List | ? | N/A
 
 ### Section 2: Player Blocks
 
@@ -52,7 +55,6 @@ Notes:
 
 ByteLength | Type | Purpose | Value
 --- | --- | --- | ---
-4 | Int32 | ? | 0x00?
 4 | Int32 | ? | 0x01?
 4 | Int32 | Number of Teams | N/A
 4 | Int32 | ? | 0x00?
