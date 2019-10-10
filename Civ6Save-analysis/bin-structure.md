@@ -114,12 +114,12 @@ ByteLength | Type | Purpose | Value
 36 | ? | ? | 0x00 Repeated?
 4 | Int32 | Length of Upcoming Int32 List | 0x40?
 Variable | Int32 List | ? | 0x00 Repeated?
-- | - | Repeat above 2 4? more times | -
+_ | _ | Repeat above 2 4? more times | _
 4 | Int32 | Length of Upcoming Int64 List | 0x06?
 48? | Int64 List | ? | N/A
-- | - | Repeat above 2 63? more times | -
+_ | _ | Repeat above 2 63? more times | _
 4 | Int32 | Length of Following Int64 List | 0x34?
 416? | Int64 List | ? | N/A
 4 | Int32 | Length of Following Int64 List | 0x25?
 296? | Int64 List | ? | N/A
-- | - | Repeate Everything in Section variable number of times (60? - 110?) | -
+_ | _ | Repeate Everything in Section variable number of times (60? - 110?) | _
