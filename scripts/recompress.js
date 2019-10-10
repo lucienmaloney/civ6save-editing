@@ -1,5 +1,6 @@
 const fs = require('fs');
 const recompress = require("../index.js").recompress;
+const versav = require("../index.js").verifysavextension;
 
 if (!(process.argv[2] && process.argv[3] && process.argv[4])) {
   console.log("# recompress.js usage:");
@@ -15,10 +16,4 @@ if (!(process.argv[2] && process.argv[3] && process.argv[4])) {
 const bin = fs.readFileSync(process.argv[2]);
 const save = fs.readFileSync(process.argv[3]);
 
-// Append file extension to output file if not done manually
-let name = process.argv[4];
-if (name.slice(-9) !== '.Civ6Save') {
-  name += '.Civ6Save';
-}
-
-fs.writeFileSync(name, recompress(save, bin));
+fs.writeFileSync(versav(name), recompress(save, bin));

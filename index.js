@@ -70,7 +70,32 @@ function recompress(savefile, binfile) {
   return merged;
 }
 
+/**
+ * Take in a .Civ6Save file, decompress it into a bin, run a callback on the bin, and recombine and return a new save
+ * @param {Buffer} savefile
+ * @return {Buffer} newsavefile
+ */
+function modify(savefile, callback = (x => x)) {
+  const bin = decompress(savefile);
+  const moddedbin = callback(bin);
+  return recompress(savefile, moddedbin);
+}
+
+/**
+ * If there isn't a .Civ6Save file extension on the file name, add it
+ * @param {string} filename
+ * @return {string} newfilename
+ */
+function verifysavextension(filename) {
+  if (filename.slice(-9) !== '.Civ6Save') {
+    return filename + '.Civ6Save';
+  }
+  return filename;
+}
+
 module.exports = {
   decompress,
   recompress,
+  modify,
+  verifysavextension,
 }
