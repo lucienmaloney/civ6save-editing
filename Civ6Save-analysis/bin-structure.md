@@ -123,3 +123,32 @@ _ | _ | Repeat above 2 63? more times | _
 4 | Int32 | Length of Following Int64 List | 0x25?
 296? | Int64 List | ? | N/A
 _ | _ | Repeate Everything in Section variable number of times (60? - 110?) | _
+
+
+### Section 4: ?
+
+### Section 5: Tile Data
+
+ByteLength | Type | Purpose | Value
+--- | --- | --- | ---
+4 | Int32 | Number of Tiles | N/A
+2 | Int16? | ? | ?
+2 | Int16? | ? | ?
+2 | Int16? | ? | ?
+2 | Int16? | ? | ?
+2 | Int16? | ? | ?
+4 | Int32 | ? | ?
+4 | Int32 | ? | 0xffffffff?
+4 | Int32 | ? | ?
+2 | Int16? | ? | ?
+4 | Int32 | ? | 0xffffffff?
+1 | Int8? | ? | ?
+4 | Int32 | ? | 0xffffffff?
+2 | Int16? | ? | ?
+7 | Int32 | ? | 0xffffffffffffff?
+2 | Int16? | ? | ?
+3 | Int32 | ? | 0xffffff?
+2 | Int16? | ? | ?
+2 | Int16? | ? | ?
+4 | Int32 | Number of Something Following | Default 0x00
+_ | _ | Repeat all but but first row (Number of tiles) times | _
