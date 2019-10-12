@@ -136,7 +136,6 @@ ByteLength | Type | Purpose | Value
 2 | Int16? | ? | ?
 2 | Int16? | ? | ?
 2 | Int16? | ? | ?
-2 | Int16? | ? | ?
 2 | Int16 | Landmass index? | ?
 2 | Int16 | Landmass index + 1? | ?
 4 | Int32 | Terrain type? | ?

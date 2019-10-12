@@ -110,16 +110,17 @@ function savetomapjson(savefile) {
   const map = {'tiles': []};
   let mindex = mapstartindex + 16;
 
+  let counter = 0;
   for (let i = 0; i < tiles; i++) {
     map.tiles.push({
       'x': i % mapsizedata[tiles].x,
       'y': Math.floor(i / mapsizedata[tiles].x),
-      'int16-1': bin.readInt16LE(mindex),
-      'int16-2': bin.readInt16LE(mindex + 2),
-      'int16-3': bin.readInt16LE(mindex + 4),
-      'int16-4': bin.readInt16LE(mindex + 6),
-      'landmass index?': bin.readInt16LE(mindex + 8),
-      'landmass index + 1?': bin.readInt16LE(mindex + 10),
+      'int16-1': bin.readUInt16LE(mindex).toString(2).padStart(16, '0'),
+      'int16-2': bin.readUInt16LE(mindex + 2).toString(2).padStart(16, '0'),
+      'int16-3': bin.readUInt16LE(mindex + 4).toString(2).padStart(16, '0'),
+      'int16-4': bin.readUInt16LE(mindex + 6).toString(2).padStart(16, '0'),
+      'landmass index?': bin.readUInt16LE(mindex + 8).toString(2).padStart(16, '0'),
+      'landmass index + 1?': bin.readUInt16LE(mindex + 10).toString(2).padStart(16, '0'),
       'terrain type?': bin.readUInt32LE(mindex + 12),
       'ice level?': bin.readUInt32LE(mindex + 16),
       '?-1': bin.readInt16LE(mindex + 20),
@@ -136,13 +137,30 @@ function savetomapjson(savefile) {
       '?-9': bin.slice(mindex + 48, mindex + 51),
       'number of things': bin.readInt32LE(mindex + 51),
     });
-    if (bin[mindex + 51] === 1) {
+    if (bin[mindex + 51]) {
+      //console.log(i % mapsizedata[tiles].x, Math.floor(i / mapsizedata[tiles].x), bin[mindex + 51]);
+      //console.log(bin.slice(mindex, mindex + 150));
+      //console.log(bin.slice(mindex + 51, mindex + 100));
+      //process.exit();
+      //console.log(bin[mindex + 51]);
+      counter++;
+    }
+    const num = bin.readUInt32LE(mindex + 51);
+    if (num === 1) {
       map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 79);
       mindex += 79;
+    } else if (num === 0xffffffff) {
+      map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 72);
+      mindex += 72;
+    } else if (num) {
+      map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 94);
+      mindex += 94;
     } else {
+      map.tiles[i].buffer = null;
       mindex += 55;
     }
   }
+  console.log(counter);
   return map;
 }
 
