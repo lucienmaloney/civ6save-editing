@@ -93,9 +93,19 @@ function verifysavextension(filename) {
   return filename;
 }
 
+function savetomapjson(savefile) {
+  const bin = decompress(savefile);
+  const searchBuffer = new Buffer([0x0E, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00]);
+  const mapstartindex = bin.indexOf(searchBuffer);
+  const tiles = bin.readInt32LE(mapstartindex + 12);
+  const map = {'0': []};
+  // In progress
+}
+
 module.exports = {
   decompress,
   recompress,
   modify,
   verifysavextension,
+  savetomapjson,
 }
