@@ -151,8 +151,7 @@ ByteLength | Type | Purpose | Value
 2 | Int16? | ? | ?
 3 | ? | ? | 0xffffff?
 2 | Int16? | ? | ?
-1 | Int8? | ? | ?
 1 | Bitmap | Cliff Orientation | Bit 6 (32) = Northwest, Bit 5 (16) = West, so on
 3 | ? | ? | ?
-1 | Int32 | Number of Something Following | Default 0x00
+4 | Int32 | Number of Something Following | Default 0x00
 _ | _ | Repeat all but but first row (Number of tiles) times | _

@@ -94,12 +94,56 @@ function verifysavextension(filename) {
 }
 
 function savetomapjson(savefile) {
+  const mapsizedata = {
+    '1144': {x: 44, y: 26},
+    '2280': {x: 60, y: 38},
+    '3404': {x: 74, y: 46},
+    '4536': {x: 84, y: 54},
+    '5760': {x: 96, y: 60},
+    '6996': {x: 106, y: 66},
+  }
+
   const bin = decompress(savefile);
   const searchBuffer = new Buffer([0x0E, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00]);
   const mapstartindex = bin.indexOf(searchBuffer);
   const tiles = bin.readInt32LE(mapstartindex + 12);
-  const map = {'0': []};
-  // In progress
+  const map = {'tiles': []};
+  let mindex = mapstartindex + 16;
+
+  for (let i = 0; i < tiles; i++) {
+    map.tiles.push({
+      'x': i % mapsizedata[tiles].x,
+      'y': Math.floor(i / mapsizedata[tiles].x),
+      'int16-1': bin.readInt16LE(mindex),
+      'int16-2': bin.readInt16LE(mindex + 2),
+      'int16-3': bin.readInt16LE(mindex + 4),
+      'int16-4': bin.readInt16LE(mindex + 6),
+      'landmass index?': bin.readInt16LE(mindex + 8),
+      'landmass index + 1?': bin.readInt16LE(mindex + 10),
+      'terrain type?': bin.readUInt32LE(mindex + 12),
+      'ice level?': bin.readUInt32LE(mindex + 16),
+      '?-1': bin.readInt16LE(mindex + 20),
+      'terrain type again?': bin.readInt32LE(mindex + 22),
+      '?-2': bin.readInt8(mindex + 26),
+      'resource?': bin.readInt32LE(mindex + 27),
+      '?-3': bin.readInt16LE(mindex + 31),
+      'goody hut?': bin.readInt32LE(mindex + 33),
+      '?-4': bin.slice(mindex + 37, mindex + 40),
+      '?-5': bin.readInt16LE(mindex + 40),
+      '?-6': bin.slice(mindex + 42, mindex + 45),
+      '?-7': bin.readInt16LE(mindex + 45),
+      'cliffmap': bin.readInt8(mindex + 47).toString(2).padStart(6, '0'),
+      '?-9': bin.slice(mindex + 48, mindex + 51),
+      'number of things': bin.readInt32LE(mindex + 51),
+    });
+    if (bin[mindex + 51] === 1) {
+      map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 79);
+      mindex += 79;
+    } else {
+      mindex += 55;
+    }
+  }
+  return map;
 }
 
 module.exports = {
