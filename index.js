@@ -93,6 +93,11 @@ function verifysavextension(filename) {
   return filename;
 }
 
+/**
+ * Convert compressed tile data in .Civ6Save file into json format
+ * @param {buffer} savefile
+ * @return {object} tiles
+ */
 function savetomapjson(savefile) {
   const mapsizedata = {
     '1144': {x: 44, y: 26},
@@ -108,12 +113,23 @@ function savetomapjson(savefile) {
   const mapstartindex = bin.indexOf(searchBuffer);
   const tiles = bin.readInt32LE(mapstartindex + 12);
   const map = {'tiles': []};
+
   let mindex = mapstartindex + 16;
 
   for (let i = 0; i < tiles; i++) {
+    const num2 = bin.readUInt8(mindex + 49);
+    const num = bin.readUInt32LE(mindex + 51);
+    let buflength = 0;
+
+    num && (buflength += 24);
+    (num2 >= 64) && (buflength += 17);
+
+    // See bin-structure.md for WIP documentation on what each of these values are
     map.tiles.push({
       'x': i % mapsizedata[tiles].x,
       'y': Math.floor(i / mapsizedata[tiles].x),
+      'hex-location': mindex,
+      'tile-length': 55 + buflength,
       'int16-1': bin.readUInt16LE(mindex).toString(2).padStart(16, '0'),
       'int16-2': bin.readUInt16LE(mindex + 2).toString(2).padStart(16, '0'),
       'int16-3': bin.readUInt16LE(mindex + 4).toString(2).padStart(16, '0'),
@@ -134,38 +150,11 @@ function savetomapjson(savefile) {
       '?-7': bin.readInt16LE(mindex + 45),
       'cliffmap': bin.readInt8(mindex + 47).toString(2).padStart(6, '0'),
       '?-9': bin.slice(mindex + 48, mindex + 51),
-      'number of things': bin.readInt32LE(mindex + 51),
+      'buffer length boolean': bin.readInt32LE(mindex + 51),
+      'buffer': bin.slice(mindex + 55, mindex + 55 + buflength),
     });
 
-    const num3 = bin.readUInt8(mindex + 48);
-    const num2 = bin.readUInt8(mindex + 49);
-    const num = bin.readUInt32LE(mindex + 51);
-    let buflength = 0;
-
-    num && (buflength += 24);
-    (num2 >= 64) && (buflength += 17);
-    num2 === 69 && (buflength = 29);
-    num2 === 69 && num && (buflength = 41);
-    num2 === 69 && num3 === 4 && (buflength = 17);
-    num2 === 66 && num3 === 4 && (buflength = 41);
-
-    map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 55 + buflength);
     mindex += 55 + buflength;
-    /*
-    if (num === 1) {
-      map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 79);
-      mindex += 79;
-    } else if (num === 0xffffffff) {
-      map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 72);
-      mindex += 72;
-    } else if (num) {
-      map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 94);
-      mindex += 94;
-    } else {
-      map.tiles[i].buffer = null;
-      mindex += 55;
-    }
-    */
   }
   return map;
 }
