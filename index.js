@@ -110,7 +110,6 @@ function savetomapjson(savefile) {
   const map = {'tiles': []};
   let mindex = mapstartindex + 16;
 
-  let counter = 0;
   for (let i = 0; i < tiles; i++) {
     map.tiles.push({
       'x': i % mapsizedata[tiles].x,
@@ -137,15 +136,22 @@ function savetomapjson(savefile) {
       '?-9': bin.slice(mindex + 48, mindex + 51),
       'number of things': bin.readInt32LE(mindex + 51),
     });
-    if (bin[mindex + 51]) {
-      //console.log(i % mapsizedata[tiles].x, Math.floor(i / mapsizedata[tiles].x), bin[mindex + 51]);
-      //console.log(bin.slice(mindex, mindex + 150));
-      //console.log(bin.slice(mindex + 51, mindex + 100));
-      //process.exit();
-      //console.log(bin[mindex + 51]);
-      counter++;
-    }
+
+    const num3 = bin.readUInt8(mindex + 48);
+    const num2 = bin.readUInt8(mindex + 49);
     const num = bin.readUInt32LE(mindex + 51);
+    let buflength = 0;
+
+    num && (buflength += 24);
+    (num2 >= 64) && (buflength += 17);
+    num2 === 69 && (buflength = 29);
+    num2 === 69 && num && (buflength = 41);
+    num2 === 69 && num3 === 4 && (buflength = 17);
+    num2 === 66 && num3 === 4 && (buflength = 41);
+
+    map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 55 + buflength);
+    mindex += 55 + buflength;
+    /*
     if (num === 1) {
       map.tiles[i].buffer = bin.slice(mindex + 55, mindex + 79);
       mindex += 79;
@@ -159,8 +165,8 @@ function savetomapjson(savefile) {
       map.tiles[i].buffer = null;
       mindex += 55;
     }
+    */
   }
-  console.log(counter);
   return map;
 }
 
