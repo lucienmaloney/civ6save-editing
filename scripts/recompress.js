@@ -16,4 +16,4 @@ if (!(process.argv[2] && process.argv[3] && process.argv[4])) {
 const bin = fs.readFileSync(process.argv[2]);
 const save = fs.readFileSync(process.argv[3]);
 
-fs.writeFileSync(versav(name), recompress(save, bin));
+fs.writeFileSync(versav(process.argv[4]), recompress(save, bin));

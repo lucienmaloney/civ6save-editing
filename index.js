@@ -152,7 +152,7 @@ function savetomapjson(savefile) {
       'Resource boolean': bin.readInt16LE(mindex + 31),
       'goody hut?': bin.slice(mindex + 33, mindex + 37),
       'Int8-9': bin.readUInt8(mindex + 37),
-      'Int8-a': bin.readUInt8(mindex + 38),
+      'Road Level': bin.readUInt8(mindex + 38),
       'Int8-b': bin.readUInt8(mindex + 39),
       'Tile Appeal': bin.readInt16LE(mindex + 40),
       'Int8-c': bin.readUInt8(mindex + 42),
