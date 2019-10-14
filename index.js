@@ -82,13 +82,14 @@ function modify(savefile, callback = (x => x)) {
 }
 
 /**
- * If there isn't a .Civ6Save file extension on the file name, add it
+ * If there isn't a certain extension suffix on the file name, add it
  * @param {string} filename
+ * @param {string} extension
  * @return {string} newfilename
  */
-function verifysavextension(filename) {
-  if (filename.slice(-9) !== '.Civ6Save') {
-    return filename + '.Civ6Save';
+function verifyextension(filename, extension = '.Civ6Save') {
+  if (filename.slice(-9) !== extension) {
+    return filename + extension;
   }
   return filename;
 }
@@ -124,23 +125,18 @@ function savetomapjson(savefile) {
     num && (buflength += 24);
     (num2 >= 64) && (buflength += 17);
 
-    if (!(i % mapsizedata[tiles].x)) {
-      console.log();
-    }
-    process.stdout.write(buflength ? 'X' : ' ');
-
     // See bin-structure.md for WIP documentation on what each of these values are
     map.tiles.push({
       'x': i % mapsizedata[tiles].x,
       'y': Math.floor(i / mapsizedata[tiles].x),
       'hex-location': mindex,
       'tile-length': 55 + buflength,
-      'int16-1': bin.readUInt16LE(mindex).toString(2).padStart(16, '0'),
-      'int16-2': bin.readUInt16LE(mindex + 2).toString(2).padStart(16, '0'),
-      'int16-3': bin.readUInt16LE(mindex + 4).toString(2).padStart(16, '0'),
-      'int16-4': bin.readUInt16LE(mindex + 6).toString(2).padStart(16, '0'),
-      'landmass index?': bin.readUInt16LE(mindex + 8).toString(2).padStart(16, '0'),
-      'landmass index + 1?': bin.readUInt16LE(mindex + 10).toString(2).padStart(16, '0'),
+      'int16-1': bin.readUInt16LE(mindex),
+      'int16-2': bin.readUInt16LE(mindex + 2),
+      'int16-3': bin.readUInt16LE(mindex + 4),
+      'int16-4': bin.readUInt16LE(mindex + 6),
+      'landmass index?': bin.readUInt16LE(mindex + 8),
+      'landmass index + 1?': bin.readUInt16LE(mindex + 10),
       'terrain type?': bin.readUInt32LE(mindex + 12),
       'ice level?': bin.readUInt32LE(mindex + 16),
       '?-1': bin.readInt16LE(mindex + 20),
@@ -168,6 +164,6 @@ module.exports = {
   decompress,
   recompress,
   modify,
-  verifysavextension,
+  verifyextension,
   savetomapjson,
 }

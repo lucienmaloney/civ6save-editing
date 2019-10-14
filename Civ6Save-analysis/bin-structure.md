@@ -155,5 +155,26 @@ ByteLength | Type | Purpose | Value
 1 | Int8? | If (greater than 64)?, add 17 bytes to final buffer | ?
 1 | Int8? | ? | ?
 4 | Boolean | If true, add 24 bytes to following buffer | Default 0x00
-Variable | Buffer | ? | Buffer length is 0, 17, 24, or 17 + 24
+0 or 24 | Buffer | Tile Improvement Data? | N/A
+0 or 17 | Buffer | Tile Ownership data. Contains city and civ index | N/A
 _ | _ | Repeat all but but first row (Number of tiles) times | _
+
+#### Tile Improvement Buffer
+
+ByteLength | Type | Purpose | Value
+--- | --- | --- | ---
+24 | Buffer | ? | N/A
+
+#### Tile Ownership Buffer
+
+ByteLength | Type | Purpose | Value
+--- | --- | --- | ---
+2 | Int16 | City Index within civ | N/A
+2 | Int16 | City Index within civ + 1? | N/A
+2 | Int16 | City Index within civ? | N/A
+2 | Int16 | City Index within civ + 1? | N/A
+4 | Int32? | ? | 0xffffff?
+1 | Int8 | Civ Index | N/A
+4 | Int32? | ? | 0xffffff?
+
+### Section 6: ?

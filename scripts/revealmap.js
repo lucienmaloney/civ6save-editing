@@ -1,6 +1,6 @@
 const fs = require('fs');
 const modify = require("../index.js").modify;
-const versav = require("../index.js").verifysavextension;
+const versav = require("../index.js").verifyextension;
 
 if (!(process.argv[2] && process.argv[3])) {
   console.log("# reavealmap.js usage:");

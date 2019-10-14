@@ -1,6 +1,6 @@
 const fs = require('fs');
 const recompress = require("../index.js").recompress;
-const versav = require("../index.js").verifysavextension;
+const versav = require("../index.js").verifyextension;
 
 if (!(process.argv[2] && process.argv[3] && process.argv[4])) {
   console.log("# recompress.js usage:");
