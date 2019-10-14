@@ -138,28 +138,32 @@ ByteLength | Type | Purpose | Value
 2 | Int16? | ? | ?
 2 | Int16 | Landmass index? | ?
 2 | Int16 | Landmass index + 1? | ?
-4 | Int32 | Terrain type? | ?
-4 | Int32 | Ice Level? | all f for no ice, some number otherwise?
+4 | Int32 | Terrain type (inc hills)? | ?
+4 | Int32 | Ice Level + forest?? | all f for no ice, some number otherwise?
 2 | Int16? | ? | ?
 4 | Int32 | Terrain type? | N/A
 1 | Int8? | ? | ?
 4 | Int32 | Resource? | N/A
-2 | Int16? | ? | ?
+2 | Boolean? | Resource exists on tile | 0 or 1
 4 | Int32 | Goody hut? | N/A
+1 | Int8? | Something to do with tile overlay? | ff or 4?
+1 | Int8 | Road level | 0-3
+1 | Int8? | ? | ?
+2 | Int16 | Tile Appeal | N/A
 3 | ? | ? | 0xffffff?
-2 | Int16? | ? | ?
-3 | ? | ? | 0xffffff?
-2 | Int16? | ? | ?
+1 | UInt8 | Number of sides bordered by a river | 0-6
+1 | Bitmap | River Orientation | Bit 6 (32) = Northwest, Bit 5 (16) = West, so on
 1 | Bitmap | Cliff Orientation | Bit 6 (32) = Northwest, Bit 5 (16) = West, so on
 1 | Int8? | ? | ?
 1 | Int8? | If (greater than 64)?, add 17 bytes to final buffer | ?
 1 | Int8? | ? | ?
 4 | Boolean | If true, add 24 bytes to following buffer | Default 0x00
-0 or 24 | Buffer | Tile Improvement Data? | N/A
+0 or 24 | Buffer | Tile Overlay Data? | N/A
 0 or 17 | Buffer | Tile Ownership data. Contains city and civ index | N/A
-_ | _ | Repeat all but but first row (Number of tiles) times | _
 
-#### Tile Improvement Buffer
+Repeat all but but first row (Number of tiles) times
+
+#### Tile Overlay Buffer
 
 ByteLength | Type | Purpose | Value
 --- | --- | --- | ---
