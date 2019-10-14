@@ -124,6 +124,11 @@ function savetomapjson(savefile) {
     num && (buflength += 24);
     (num2 >= 64) && (buflength += 17);
 
+    if (!(i % mapsizedata[tiles].x)) {
+      console.log();
+    }
+    process.stdout.write(buflength ? 'X' : ' ');
+
     // See bin-structure.md for WIP documentation on what each of these values are
     map.tiles.push({
       'x': i % mapsizedata[tiles].x,

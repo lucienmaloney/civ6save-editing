@@ -151,6 +151,9 @@ ByteLength | Type | Purpose | Value
 3 | ? | ? | 0xffffff?
 2 | Int16? | ? | ?
 1 | Bitmap | Cliff Orientation | Bit 6 (32) = Northwest, Bit 5 (16) = West, so on
-3 | ? | ? | ?
-4 | Int32 | Number of Something Following | Default 0x00
+1 | Int8? | ? | ?
+1 | Int8? | If (greater than 64)?, add 17 bytes to final buffer | ?
+1 | Int8? | ? | ?
+4 | Boolean | If true, add 24 bytes to following buffer | Default 0x00
+Variable | Buffer | ? | Buffer length is 0, 17, 24, or 17 + 24
 _ | _ | Repeat all but but first row (Number of tiles) times | _

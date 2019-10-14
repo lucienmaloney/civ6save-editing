@@ -20,6 +20,8 @@ Now, move the output file back into the Civilization 6 save file directory and t
 * scripts
     * decompress.js
     * recompress.js
+    * revealmap.js
+    * savetomaptable.js
 * Civ6Save-samples
     * Various example .Civ6Save and .Civ6Save.bin files for testing and reference
 * Civ6Save-analysis
