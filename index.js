@@ -73,12 +73,45 @@ function recompress(savefile, binfile) {
 /**
  * Take in a .Civ6Save file, decompress it into a bin, run a callback on the bin, and recombine and return a new save
  * @param {Buffer} savefile
+ * @param {Function} callback
  * @return {Buffer} newsavefile
  */
 function modify(savefile, callback = (x => x)) {
   const bin = decompress(savefile);
   const moddedbin = callback(bin);
   return recompress(savefile, moddedbin);
+}
+
+/**
+ * Take in a .Civ6Save file, decompress it into a bin, run a callback on each tile buffer, and recombine into new save
+ * @param {Buffer} savefile
+ * @param {Function} callback
+ * @return {Buffer} newsavefile
+ */
+function modifytiles(savefile, callback = (b => b)) {
+  return modify(savefile, bin => {
+    const searchBuffer = new Buffer([0x0E, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00]);
+    const mapstartindex = bin.indexOf(searchBuffer);
+    const tiles = bin.readInt32LE(mapstartindex + 12);
+
+    let mindex = mapstartindex + 16;
+    for (let i = 0; i < tiles; i++) {
+      const num2 = bin.readUInt8(mindex + 49);
+      const num = bin.readUInt32LE(mindex + 51);
+      let buflength = 0;
+
+      num && (buflength += 24);
+      (num2 >= 64) && (buflength += 17);
+
+      const tilebuf = bin.slice(mindex, mindex + 55 + buflength);
+      const newtilebuf = callback(tilebuf);
+      newtilebuf.copy(bin, mindex);
+
+      mindex += 55 + buflength;      
+    }
+
+    return bin;
+  });
 }
 
 /**
@@ -177,4 +210,5 @@ module.exports = {
   modify,
   verifyextension,
   savetomapjson,
+  modifytiles,
 }
